@@ -1,0 +1,15 @@
+version: "3.6"
+services:
+  gitlab:
+    image: gitlab/gitlab-ee:latest
+    container name: 'v1-squadgitlab'
+    hostname: git.squadgitlab.com
+    volumes:
+      - 'srv/docker/v1-squadgitlab/gitlab/etc:/etc/gitlab'
+      - 'srv/docker/v1-squadgitlab/gitlab/log:/var/log/gitlab'
+      - 'srv/docker/v1-squadgitlab/gitlab/data:/var/opt/gitlab'
+    environment:
+      TZ: Africa/Abidjan
+      GITLAB_OMNIBUS_CONFIG: 
+          gitlab rails['time_zone'] = 'Africa/Abidjan'
+          gitlab rails['smtp enable'] = true
